@@ -6,5 +6,4 @@ package com.ihblu.common;
  * @Date: 2022/3/31
  */
 public class Common {
-
 }
