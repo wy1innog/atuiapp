@@ -1,13 +1,15 @@
 package com.ihblu.atuiapp;
 
-import android.databinding.DataBindingUtil;
+import android.widget.TextView;
 
-import com.ihblu.atuiapp.databinding.ActivityMainBinding;
 import com.ihblu.common.app.BaseActivity;
-import com.ihblu.common.bean.UserBean;
+
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
 
+    @BindView(R.id.tv_test)
+    private TextView mTvTest;
     @Override
     protected int getContentLayoutId() {
         return R.layout.activity_main;
@@ -15,8 +17,5 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, getContentLayoutId());
-        UserBean userBean = new UserBean("小明", 18);
-        binding.setUser(userBean);
     }
 }
