@@ -11,6 +11,8 @@
         android:theme="@style/Theme.ATuiApp">
         <activity
             android:name=".MainActivity"
+            android:theme="@style/AppTheme.Main"
+            android:screenOrientation="fullSensor"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

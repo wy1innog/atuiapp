@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">ATuiApp</string>
+    <string name="app_name">慕聊</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_launch">@string/app_name</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_message">MessageActivity</string>
+    <string name="title_activity_personal">PersonalActivity</string>
+    <string name="title_activity_group_create">GroupCreateActivity</string>
+    <string name="title_activity_group_member">GroupMemberActivity</string>
+    <string name="action_home">Home</string>
+    <string name="action_group">Group</string>
+    <string name="action_contact">Contact</string>
 </resources>
