@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
+    private static final String TAG = "BaseActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             int layoutId = getContentLayoutId();
             setContentView(layoutId);
+            Log.d(TAG, "onCreate: setContentView: " + layoutId);
             initView();
             initData();
         } else {

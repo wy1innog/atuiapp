@@ -13,7 +13,7 @@
         android:layout_height="@dimen/actionBarWithStatusBarSize"
         android:elevation="@dimen/len_2"
         android:outlineProvider="bounds"
-        >
+        tools:targetApi="lollipop">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,9 +22,17 @@
             android:paddingLeft="@dimen/len_4"
             android:paddingRight="@dimen/len_4">
 
-
+            <com.ihblu.common.widget.PortraitView
+                android:id="@+id/iv_portrait"
+                android:layout_width="@dimen/len_40"
+                android:layout_height="@dimen/len_40"
+                android:layout_margin="@dimen/len_4"
+                android:foreground="@drawable/ic_touch_menu"
+                android:padding="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_portrait" />
             <TextView
-                android:id="@+id/txt_title"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -33,7 +41,7 @@
                 android:textAppearance="@style/TextAppearance.Title" />
 
             <ImageView
-                android:id="@+id/im_search"
+                android:id="@+id/iv_search"
                 android:layout_width="@dimen/len_40"
                 android:layout_height="@dimen/len_40"
                 android:layout_gravity="end|center_vertical"
@@ -81,6 +89,6 @@
         app:itemIconTint="@color/text_nav"
         app:itemTextColor="@color/text_nav"
         app:menu="@menu/navigation_items"
-        tools:visibility="invisible" />
+        tools:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>
