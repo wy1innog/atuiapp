@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "ATuiApp"
 include ':app'
 include ':Common'
+include ':lang'
