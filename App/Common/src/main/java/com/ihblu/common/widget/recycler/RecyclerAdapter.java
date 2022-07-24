@@ -22,21 +22,31 @@ import java.util.List;
 public abstract class RecyclerAdapter<Data>
         extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder<Data>>
         implements View.OnClickListener, View.OnLongClickListener, AdapterCallback<Data>{
-    private List<Data> mDataList = new ArrayList<>();
+    private final List<Data> mDataList;
     private AdapterListener<Data> listeners;
 
-    public RecyclerAdapter(List<Data> dataList, AdapterListener<Data> listener) {
-        this.mDataList = dataList;
-        this.listeners = listener;
+    /**
+     * 构造函数模块
+     */
+    public RecyclerAdapter() {
+        this(null);
     }
 
     public RecyclerAdapter(AdapterListener<Data> listener) {
         this(new ArrayList<Data>(), listener);
     }
 
-    public RecyclerAdapter() {
-        this(null);
+    public RecyclerAdapter(List<Data> dataList, AdapterListener<Data> listener) {
+        this.mDataList = dataList;
+        this.listeners = listener;
     }
+
+    /**
+     * 复写默认的布局类型返回
+     *
+     * @param position 坐标
+     * @return 类型，其实复写后返回的都是XML文件的ID
+     */
     @Override
     public int getItemViewType(int position) {
         return getItemViewType(position, mDataList.get(position));
@@ -65,14 +75,16 @@ public abstract class RecyclerAdapter<Data>
         // 把XML id为viewTYpe的文件初始化为一个root view
         View root = inflater.inflate(viewType, viewGroup, false);
         // 通过子类必须实现的方法，得到一个viewHolder
-        ViewHolder<Data> holder = onCreateViewHolder((ViewGroup) root, viewType);
+        ViewHolder<Data> holder = onCreateViewHolder(root, viewType);
 
+        // 设置View的Tag为ViewHolder，进行双向绑定
         root.setTag(R.id.tag_recycler_holder, holder);
+        // 设置事件点击
         root.setOnClickListener(this);
         root.setOnLongClickListener(this);
         holder.callback = this;
         // 设置view的Tag为ViewHolder,进行双向绑定
-        return null;
+        return holder;
     }
 
     /**
@@ -130,7 +142,15 @@ public abstract class RecyclerAdapter<Data>
 
     @Override
     public void update(Data data, ViewHolder<Data> holder) {
-
+        // 得到当前ViewHolder的坐标
+        int pos = holder.getAdapterPosition();
+        if (pos >= 0) {
+            // 进行数据的移除与更新
+            mDataList.remove(pos);
+            mDataList.add(pos, data);
+            // 通知这个坐标下的数据有更新
+            notifyItemChanged(pos);
+        }
     }
 
     /**
@@ -194,7 +214,7 @@ public abstract class RecyclerAdapter<Data>
          */
         void bind(Data data) {
             this.mData = data;
-
+            onBind(data);
         }
 
         /**
@@ -215,6 +235,22 @@ public abstract class RecyclerAdapter<Data>
         void onItemLongClick(RecyclerAdapter.ViewHolder holder, Data data);
     }
 
+    /**
+     * 对回调接口做一次实现
+     * @param <Data>
+     */
+    public static abstract class AdapterListenerImpl<Data> implements AdapterListener<Data> {
+
+        @Override
+        public void onItemClick(ViewHolder holder, Data data) {
+
+        }
+
+        @Override
+        public void onItemLongClick(ViewHolder holder, Data data) {
+
+        }
+    }
     public void setAdapterListeners(AdapterListener<Data> listener) {
         this.listeners = listener;
     }
