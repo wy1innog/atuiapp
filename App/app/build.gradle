@@ -37,6 +37,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
     implementation "com.android.support:design:$rootProject.ext.supportVersion"
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    implementation 'com.android.support:support-v4:28.0.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
 
     implementation "net.qiujuer.genius:ui:$rootProject.ext.geniusVersion"

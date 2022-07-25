@@ -89,6 +89,7 @@
         app:itemIconTint="@color/text_nav"
         app:itemTextColor="@color/text_nav"
         app:menu="@menu/navigation_items"
-        tools:visibility="gone" />
+        tools:targetApi="lollipop"
+        tools:visibility="invisible" />
 
 </android.support.design.widget.CoordinatorLayout>
